@@ -1,4 +1,4 @@
-# CipherSuiteK
+# CipherSuiteZ
 A collection of Python scripts that model ciphers of the past and introduces some new ciphers.
 
 ## Getting Started
@@ -7,7 +7,7 @@ Install python2 on for your platform, if it is not already installed.
 ### Installing
 There is no need for installation.  Each script can be run using their individual instructions below.
 To copy the scripts, either clone the repository:
-	`git clone ssh://git@github.com/pvial00/CipherSuiteK`
+	`git clone ssh://git@github.com/pvial00/CipherSuiteZ`
 Or download the script files manually.
 
 ### affine.py - Affine cipher
