@@ -16,6 +16,7 @@ python affine.py encrypt/decrypt
 ---Supports A-Z
 
 ### atbash.py - Atbash cipher
+To run:
 python atbash.py encryp/decrypt
 --- Supports A-Z
 
