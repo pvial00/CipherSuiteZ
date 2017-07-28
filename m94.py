@@ -15,6 +15,7 @@ def init_wheels(num_wheels):
 			popi = temp_que.popleft()
 			sys.stdout.write(popi)
 		sys.stdout.write("\n")
+		#print temp_que
 		wheels.append(temp_que)
 	return wheels
 
@@ -26,6 +27,7 @@ def program_wheels(num_wheels):
 		temp_que = collections.deque()
 		for letter in alpha_set:
 			temp_que.append(letter)
+		#print temp_que
 		wheels.append(temp_que)
 	return
 
@@ -44,8 +46,14 @@ def rotate_wheel(wheel_num, char):
 			found = 1
 			break
 	return
+
+def set_wheel_order(order):
+    for x, p in enumerate(order.split()):
+        order_pos = int(p)
+        wheel = wheels.pop(order_pos)
+        wheels.insert(x, wheel)
 	
-def jefferson_cipher(data):
+def m94_cipher(data):
 	global wheels
 	wheel = []
 	for x in reversed(range(0,len(data))):
@@ -61,11 +69,18 @@ def jefferson_cipher(data):
 			sys.stdout.write(letter)
 		sys.stdout.write("\n")
 
-num_wheels = 26
+num_wheels = 25
 program_wheels(num_wheels)
-print "Jefferson Wheel Cipher (Enter a message up to 26 characters)"
+print "M94 Cipher Machine"
+try:
+    wheel_order = raw_input("Enter disk order: ")
+except ValueError as ver:
+    pass
+else:
+    set_wheel_order(wheel_order)
+print "Enter a message up to 25 characters"
 data = raw_input("Enter cipher text: ")
-if len(data) > 26:
-	print "Your message must be 26 characters or less.  Try again."
+if len(data) > 25:
+	print "Your message must be 25 characters or less.  Try again."
 	sys.exit(0)
-jefferson_cipher(data)
+m94_cipher(data)
