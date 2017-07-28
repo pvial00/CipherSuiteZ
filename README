@@ -145,6 +145,11 @@ To run:
 python twist.py encrypt/decrypt
 --- Supports any
 
+### vernam.py - Vernam XOR cipher
+To run:
+python vernam.py encrypt/decrypt <input file> <output file>
+--- Supports files only
+
 ### vigenere.py - Vigenere cipher
 To run:
 python vigenere.py encrypt/decrypt
