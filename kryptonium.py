@@ -1,4 +1,4 @@
-import sys, time, os
+import sys, time, os, random
 from getpass import getpass
 
 try:
@@ -19,12 +19,10 @@ except IndexError as ier:
     print "Error: output file is missing"
     sys.exit(1)
 
-key = sys.argv[4]
-
 def gen_session_key(session_key_length):
 	session_key = ""
 	for key in range(0,session_key_length):
-		session_key = session_key + chr(os.urandom(1))
+		session_key = session_key + os.urandom(1)
 	return session_key
 
 def krypt(text, key):
@@ -70,18 +68,18 @@ except NameError as ner:
 	sys.exit(0)
 
 try:
-	key
-except NameError:
+	key = sys.argv[4]
+except IndexError:
 	key = getpass("key: ")
 
 data = infile.read()
 session_key_length =  16 # 16 for 128 bit, 32 for 256 bit, 128 for 1024 bit, 256 for 2048 
 
 start_time = time.time()
-if mode == 0:
+if mode == "encrypt":
 	cipher_text = krypto_pack(data, key)
 	outfile.write(cipher_text)
-elif mode == 1:
+elif mode == "decrypt":
 	plain_text = krypto_unpack(data, key)
 	outfile.write(plain_text)
 
