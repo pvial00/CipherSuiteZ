@@ -24,7 +24,7 @@ key = sys.argv[4]
 def gen_session_key(session_key_length):
 	session_key = ""
 	for key in range(0,session_key_length):
-		session_key = session_key + chr(random.randint(0,127))
+		session_key = session_key + chr(os.urandom(1))
 	return session_key
 
 def krypt(text, key):
