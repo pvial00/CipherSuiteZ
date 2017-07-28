@@ -1,0 +1,145 @@
+# CipherSuiteK
+A collection of Python scripts that model ciphers of the past and introduces some new ciphers.
+
+## Getting Started
+Install python2 on for your platform, if it is not already installed.
+
+### Installing
+There is no need for installation.  Each script can be run using their individual instructions below.
+To copy the scripts, either clone the repository:
+	`git clone ssh://git@github.com/pvial00/CipherSuiteK`
+Or download the script files manually.
+
+### affine.py - Affine cipher
+To run:
+python affine.py encrypt/decrypt
+---Supports A-Z
+
+### atbash.py - Atbash cipher
+python atbash.py encryp/decrypt
+--- Supports A-Z
+
+### baconian.py - Classic Baconian cipher
+To run:
+python baconian.py encrypt/decrypt
+--- Supports A-Z
+
+### baconbits.py - Baconian cipher using bits
+To run:
+python baconbits.py encrypt/decrypt
+--- Supports A-Z
+
+### beale.py - A Beale/book cipher
+To run:
+python beale.py encrypt/decrypt <book file>
+--- Supports alphabets defined by your book file. Can support lower and upper case letters if the book contains them.
+
+### beholder.py - A powerful and complex mutlialphabet substitution cipher
+To run:
+python beholder.py encrypt/decrypt/gen
+--- Suports A-Z (gen mode generates shiftbox and matrixbox settings that you can copy and paste into the script)
+
+The idea is that you would randomly generate shiftbox and matrixbox settings and share them with the other party.  You would also exchange a key.  All 3 of these things combined create the key.
+
+### BitShuffle - Binary transposition cipher
+To run:
+python bitshuffle.py encrypt/decrypt
+--- Supports A-z,0-9 and some special characters
+
+### bitX - Simple file encryption program
+To run:
+python bitX.py encrypt/decrypt <input file> <output file>
+--- Supports files only
+
+### brutus.py - Better than Caesar cipher
+To run:
+python brutus.py encrypt/decrypt
+--- Supports A-z,0-9 and some special characters
+
+### caesar.py - Standard Caesar shift of 3
+To run:
+python caesar.py encrypt/decrypt
+--- Supports A-z,0-9 and some special characters
+
+### chao.py - Chaocipher
+To run:
+python chao.py encrypt/decrypt/gen
+--- Supports A-Z (gen mode generates a new alphabets that you can copy and paste into the script)
+
+### cube.py - A fierce 26x26x26 keyed alphabet substitution matrix (Presently unbreakeable)
+To run:
+python cube.py encrypt/decrypt
+--- Supports A-Z
+
+### cyfr.py - Number cipher of sorts
+To run:
+python cyfr.py encrypt/decrypt
+--- Supports A-Z,0-9 and some special characters
+
+### exponential.py - A simple mathmatical cipher
+To run:
+python exponential.py encrypt/decrypt
+--- Supports A-z,0-9 and some special characters
+
+### gigo.py - Shifts the alphabet and adds garbage
+To run:
+python gigo.py encrypt/decrypt
+--- Supports A-Z
+
+### glyph.py - UTF substitution cipher
+To run:
+python glyph.py encrypt/decrypt
+--- Suports A-z,0-9 and most special characters
+
+### wheel_cipher.py - Jefferson Wheel cipher
+To run:
+python wheel_cipher.py encrypt/decrypt
+--- Supports A-Z
+
+### kiss.py - Keyed alphabet cipher
+To run:
+python kiss.py encrypt/decrypt
+--- Supports A-Z
+
+### kryptonium.py - Custom XOR file encryption
+To run:
+python kryptonium.py encrypt/decrypt <input file> <output file>
+--- Supports files only
+
+### krotX.py - A ROT13 cipher (adjustable)
+To run:
+python krotX.py encrypt/decrypt
+--- Supports A-Z
+
+### mausoleum.py - An ECB mode 4 round Feistel cipher
+To run:
+python mausoleum.py encrypt/decrypt <input file> <output file>
+--- Supports files only
+
+### mausoleum-cbc.py - A CBC mode 4 round Feistel cipher
+To run:
+python mausoleum-cbc.py encrypt/decrypt <input file> <output file>
+--- Supports files only
+
+### m94.py - M94 military cipher device
+To run:
+python m94.py encrypt/decrypt
+
+### pig_latin.py - Converts English into Pig Latin
+To run:
+python pig_latin.py
+
+### split_brain.py - Two ciphers in one kind of
+To run:
+python split_brain.py encrypt/decrypt
+--- Supports A-z,0-9
+
+### twist.py - Simple transposition cipher
+To run:
+python twist.py encrypt/decrypt
+--- Supports any
+
+### vigenere.py - Vigenere cipher
+To run:
+python vigenere.py encrypt/decrypt
+--- Supports A-Z
