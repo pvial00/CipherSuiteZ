@@ -122,6 +122,11 @@ To run:
 python mausoleum-cbc.py encrypt/decrypt <input file> <output file>
 --- Supports files only
 
+Mirror Mirror - Steganographic - hides XOR encryption in images (only tested JPEG images)
+To run:
+python mirror_mirror.py encrypt/decrypt <input file> <output file>
+--- Note output file is only needed for encryption
+
 ### m94.py - M94 military cipher device
 To run:
 python m94.py encrypt/decrypt
