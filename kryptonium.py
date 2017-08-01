@@ -1,4 +1,4 @@
-import sys, time, os, random
+import sys, time, os
 from getpass import getpass
 
 try:
