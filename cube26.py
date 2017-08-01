@@ -53,7 +53,10 @@ def gen_cube(length, width, depth):
 
 def morph_cube(counter):
     mod_value = counter % 26
-    shift_value = (mod_value + 13) % 26
+    key_element = key_list.pop(0)
+    key_value = ord(key_element)
+    key_list.append(key_element)
+    shift_value = (mod_value + key_value) % 26
     for s in range(len(master_list)):
         section = master_list.pop(mod_value)
         for alphabet in section:
@@ -92,9 +95,17 @@ def decipher(words):
             morph_cube(counter)
             plain_text += sub
     return plain_text
+
+def load_key(key):
+    global key_list
+    key_list = []
+    for element in key:
+        key_list.append(element)
+
                 
 words = raw_input("Enter text to cipher: ")
 key = getpass.getpass("Enter key: ")
+load_key(key)
 gen_alphadict()
 gen_cube(26, 26, 26)
 key_cube(key)
