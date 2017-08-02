@@ -77,6 +77,11 @@ To run:
 python cube26.py encrypt/decrypt
 --- Supports A-Z
 
+### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbreakeable)
+To run:
+python cube90.py encrypt/decrypt
+--- Supports A-z,0-9 and some special characters
+
 ### cyfr.py - Number cipher of sorts
 To run:
 python cyfr.py encrypt/decrypt
@@ -106,6 +111,11 @@ python wheel_cipher.py encrypt/decrypt
 To run:
 python kiss.py encrypt/decrypt
 --- Supports A-Z
+
+### kryptonite.py - 16 round feistel cipher file encryption
+To run:
+python kryptonium.py encrypt/decrypt <input file> <output file>
+--- Supports files only
 
 ### kryptonium.py - Custom XOR file encryption
 To run:
@@ -143,6 +153,11 @@ python pig_latin.py
 ### scratch - Single Permutating Keyed Substitution Alphabet
 To run:
 python scratch.py encrypt/decrypt
+--- Support A-Z
+
+### simple.py - Simple single alphabet subtitution cipher
+To run:
+python simple.py encrypt/decrypt
 --- Support A-Z
 
 ### split_brain.py - Two ciphers in one kind of
