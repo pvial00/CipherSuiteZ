@@ -1,6 +1,10 @@
-import sys, collections, getpass, random
+import sys, collections, getpass
 
-mode = sys.argv[1]
+try:
+    mode = sys.argv[1]
+except IndexError as ier:
+    print "Error: Did you forget to encrypt/decrypt?"
+    sys.exit(1)
 
 alphasize = 91
 
