@@ -140,6 +140,11 @@ python m94.py encrypt/decrypt
 To run:
 python pig_latin.py
 
+### scratch - Single Permutating Keyed Substitution Alphabet
+To run:
+python scratch.py encrypt/decrypt
+--- Support A-Z
+
 ### split_brain.py - Two ciphers in one kind of
 To run:
 python split_brain.py encrypt/decrypt
