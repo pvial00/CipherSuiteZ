@@ -67,14 +67,19 @@ To run:
 python chao.py encrypt/decrypt/gen
 --- Supports A-Z (gen mode generates a new alphabets that you can copy and paste into the script)
 
-### cube.py - A fierce 26x26x26 keyed alphabet substitution matrix (Presently unbreakeable)
+### cube.py - A fierce 26x26x26 keyed alphabet substitution matrix (Presently unbroken)
 To run:
 python cube.py encrypt/decrypt
 --- Supports A-Z
 
-### cube26.py - An even more fierce 26x26x26 keyed alphabet substitution matrix (Presently unbreakeable)
+### cube26.py - An even more fierce 26x26x26 keyed alphabet substitution matrix (Presently unbroken)
 To run:
 python cube26.py encrypt/decrypt
+--- Supports A-Z
+
+### cube26a.py - An advanced version of the even more fierce 26x26x26 keyed alphabet substitution matrix (Presently unbroken)
+To run:
+python cube26a.py encrypt/decrypt
 --- Supports A-Z
 
 ### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbreakeable)
