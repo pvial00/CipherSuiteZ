@@ -1,5 +1,5 @@
-# CipherSuiteZ
-A collection of Python scripts that model ciphers of the past and introduces some new ciphers.
+# CipherSuiteZ - GPL License
+A collection of Python scripts that model ciphers of the past and introduces some new ciphers.  All ciphers are released under the GPL license.
 
 ## Getting Started
 Install python2 on for your platform, if it is not already installed.
