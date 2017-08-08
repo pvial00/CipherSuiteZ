@@ -131,7 +131,6 @@ load_key(key)
 gen_alphadict()
 gen_cube(26, 26, 26)
 key_cube(key)
-print len(master_list)
 if mode == "encrypt":
     cipher_text = encipher(words)
     print cipher_text
