@@ -82,7 +82,7 @@ To run:
 python cube26a.py encrypt/decrypt
 --- Supports A-Z
 
-### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbreakeable)
+### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbroken)
 To run:
 python cube90.py encrypt/decrypt
 --- Supports A-z,0-9 and some special characters
