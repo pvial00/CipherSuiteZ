@@ -25,8 +25,8 @@ def key_cube(key):
                 pos = alphabet.index(char)
                 key_sub = alphabet.pop(pos)
                 alphabet.append(key_sub)
-                for x in range(0,char_value + x):
-                    if x % 2 == 0:
+                for y in range(0,char_value + x):
+                    if y % 2 == 0:
                         shuffle = alphabet.pop(0)
                         alphabet.append(shuffle)
                         shuffle = alphabet.pop(2)
@@ -77,11 +77,11 @@ def morph_cube(counter):
     key_list.append(key_element)
     shift_value = (mod_value + key_value) % 26
     for s in range(len(master_list)):
-        section = master_list.pop(mod_value)
+        section = master_list.pop(s)
         for alphabet in section:
             shift = alphabet.pop(mod_value)
             alphabet.insert(shift_value,shift)
-        section.insert(mod_value,alphabet)
+        section.insert(s,alphabet)
         master_list.append(section)
     section_shift = master_list.pop(0)
     master_list.append(section_shift)
@@ -131,6 +131,7 @@ load_key(key)
 gen_alphadict()
 gen_cube(26, 26, 26)
 key_cube(key)
+print len(master_list)
 if mode == "encrypt":
     cipher_text = encipher(words)
     print cipher_text
