@@ -1,10 +1,20 @@
-import sys, collections, getpass
+import sys, collections, getpass, select
+
+if select.select([sys.stdin,],[],[],0.0)[0]:
+    words = sys.stdin.read()
+else:
+    words = raw_input("Enter text to cipher: ")
 
 try:
     mode = sys.argv[1]
 except IndexError as ier:
     print "Error: Did you forget encrypt/decrypt?"
     sys.exit(1)
+
+try:
+    key = sys.argv[2]
+except IndexError as ier:
+    key = getpass.getpass("Enter key: ")
 
 def gen_alphadict():
     global alphabet_dict
@@ -87,7 +97,6 @@ def morph_cube(counter):
     master_list.append(section_shift)
             
 def encipher(words):
-    cipher_text = ""
     sub_key = key
     for word in words.split():
         for counter, letter in enumerate(word):
@@ -100,11 +109,9 @@ def encipher(words):
                     alphabet.append(shift)
             morph_cube(counter)
             sub_key = key_scheduler(sub_key)
-            cipher_text += sub
-    return cipher_text
+            sys.stdout.write(sub)
 
 def decipher(words):
-    plain_text = ""
     sub_key = key
     for word in words.split():
         for counter, letter in enumerate(word):
@@ -116,8 +123,7 @@ def decipher(words):
                     alphabet.append(shift)
             morph_cube(counter)
             sub_key = key_scheduler(sub_key)
-            plain_text += sub
-    return plain_text
+            sys.stdout.write(sub)
 
 def load_key(key):
     global key_list
@@ -125,15 +131,13 @@ def load_key(key):
     for element in key:
         key_list.append(element)
                 
-words = raw_input("Enter text to cipher: ")
-key = getpass.getpass("Enter key: ")
 load_key(key)
 gen_alphadict()
 gen_cube(26, 26, 26)
 key_cube(key)
 if mode == "encrypt":
     cipher_text = encipher(words)
-    print cipher_text
+    sys.stdout.write("\n")
 elif mode == "decrypt":
     plain_text = decipher(words)
-    print plain_text
+    sys.stdout.write("\n")
