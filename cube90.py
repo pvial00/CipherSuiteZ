@@ -1,10 +1,20 @@
-import sys, collections, getpass
+import sys, collections, getpass, select
+
+if select.select([sys.stdin,],[],[],0.0)[0]:
+    words = sys.stdin.read()
+else:
+    words = raw_input("Enter text to cipher: ")
 
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget to encrypt/decrypt?"
+    print "Error: Did you forget encrypt/decrypt?"
     sys.exit(1)
+
+try:
+    key = sys.argv[2]
+except IndexError as ier:
+    key = getpass.getpass("Enter key: ")
 
 alphasize = 91
 
@@ -27,18 +37,33 @@ def key_cube(key):
                 pos = alphabet.index(char)
                 key_sub = alphabet.pop(pos)
                 alphabet.append(key_sub)
-                for x in range(0,char_value + x):
-                    if x % 2 == 0:
+                for y in range(0,char_value + x):
+                    if y % 2 == 0:
                         shuffle = alphabet.pop(0)
                         alphabet.append(shuffle)
                         shuffle = alphabet.pop(2)
-                        alphabet.insert(45,shuffle)
+                        alphabet.insert(12,shuffle)
                 section.insert(x,alphabet)
             for x in range(char_value):
                 section = master_list.pop(char_value)
                 newpos = (char_value + (x * 128)) % alphasize
                 master_list.insert(newpos,section)
-            
+
+def key_scheduler(key):
+    sub_key = ""
+    for element in key:
+        pos = alphabet_dict[element]
+        section = master_list.pop(pos)
+        sub_alpha = section.pop(pos)
+        shift = sub_alpha.pop(1)
+        sub_alpha.append(shift)
+        section.insert(pos,sub_alpha)
+        master_list.insert(pos,section)
+        sub = sub_alpha.pop(pos)
+        sub_alpha.insert(pos,sub)
+        sub_key += sub
+    load_key(sub_key)
+    return sub_key
 
 def gen_cube(length, width, depth):
     global master_list
@@ -53,7 +78,7 @@ def gen_cube(length, width, depth):
                 shift = alphabet.pop(0)
                 alphabet.append(shift)
                 shift = alphabet.pop(2)
-                alphabet.insert(45,shift)
+                alphabet.insert(12,shift)
             section_list.append(alphabet)
         master_list.append(section_list)
 
@@ -64,17 +89,17 @@ def morph_cube(counter):
     key_list.append(key_element)
     shift_value = (mod_value + key_value) % alphasize
     for s in range(len(master_list)):
-        section = master_list.pop(mod_value)
+        section = master_list.pop(s)
         for alphabet in section:
             shift = alphabet.pop(mod_value)
             alphabet.insert(shift_value,shift)
-        section.insert(mod_value,alphabet)
+        section.insert(s,alphabet)
         master_list.append(section)
     section_shift = master_list.pop(0)
     master_list.append(section_shift)
             
 def encipher(words):
-    cipher_text = ""
+    sub_key = key
     for word in words:
         for counter, letter in enumerate(word):
             for section in master_list:
@@ -85,11 +110,11 @@ def encipher(words):
                     shift = alphabet.pop(0)
                     alphabet.append(shift)
             morph_cube(counter)
-            cipher_text += sub
-    return cipher_text
+            sub_key = key_scheduler(sub_key)
+            sys.stdout.write(sub)
 
 def decipher(words):
-    plain_text = ""
+    sub_key = key
     for word in words:
         for counter, letter in enumerate(word):
             for section in master_list:
@@ -99,25 +124,22 @@ def decipher(words):
                     shift = alphabet.pop(0)
                     alphabet.append(shift)
             morph_cube(counter)
-            plain_text += sub
-    return plain_text
+            sub_key = key_scheduler(sub_key)
+            sys.stdout.write(sub)
 
 def load_key(key):
     global key_list
     key_list = []
     for element in key:
         key_list.append(element)
-
                 
-words = raw_input("Enter text to cipher: ")
-key = getpass.getpass("Enter key: ")
 load_key(key)
 gen_alphadict()
 gen_cube(alphasize, alphasize, alphasize)
 key_cube(key)
 if mode == "encrypt":
     cipher_text = encipher(words)
-    print cipher_text
+    sys.stdout.write("\n")
 elif mode == "decrypt":
     plain_text = decipher(words)
-    print plain_text
+    sys.stdout.write("\n")
