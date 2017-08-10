@@ -106,7 +106,9 @@ def encipher(words):
         for counter, letter in enumerate(word):
             for section in master_list:
                 for alphabet in section:
-                    sub_pos = counter
+		    keytmp = key_list.pop(0)
+		    key_list.append(keytmp)
+                    sub_pos = ord(keytmp)
                     sub = alphabet.pop(sub_pos)
                     xor_sub = ord(letter) ^ sub
                     alphabet.insert(sub_pos,sub)
