@@ -82,7 +82,7 @@ To run:
 python cube26a.py encrypt/decrypt
 --- Supports A-Z
 
-### cube256.py - An Automated One Time Pad (Currently experimental Alpha phase)
+### cube256.py - Key Automated Stream Cipher (Currently experimental Alpha phase)
 To run:
 python cube256.py encrypt/decrypt <input file> <output file> <key optional>
 --- Supports binary files
