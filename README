@@ -82,6 +82,11 @@ To run:
 python cube26a.py encrypt/decrypt
 --- Supports A-Z
 
+### cube256.py - An Automated One Time Pad (Currently experimental Alpha phase)
+To run:
+python cube256.py encrypt/decrypt <input file> <output file> <key optional>
+--- Supports binary files
+
 ### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbroken)
 To run:
 python cube90.py encrypt/decrypt
