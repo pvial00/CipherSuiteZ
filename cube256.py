@@ -114,7 +114,6 @@ def encipher(words):
                     alphabet.append(shift)
             morph_cube(counter)
             sub_key = key_scheduler(sub_key)
-            print sub_key
             cipher_text += chr(xor_sub)
     return cipher_text
 
