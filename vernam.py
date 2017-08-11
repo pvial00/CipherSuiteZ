@@ -20,9 +20,14 @@ except IndexError as ier:
 
 def vernam_xor(text, key):
     crypt_text = ""
+    key_list = []
+    for k in key:
+        key_list.append(k)
     for x in range(0,len(text)):
+        key_element = key_list.pop(0)
+        key_list.append(key_element)
 	primary_round = ord(text[x])
-	primary_round = primary_round ^ ord(key[y])
+	primary_round = primary_round ^ ord(key_element)
 	crypt_text += chr(primary_round)
     return crypt_text
 
