@@ -8,7 +8,7 @@ except IndexError as ier:
     print "Error: Did you forget encrypt/decrypt?"
     sys.exit(1)
 try:
-in_file = sys.argv[2]
+    in_file = sys.argv[2]
 except IndexError as ier:
     print "Error: input file missing"
     sys.exit(1)
