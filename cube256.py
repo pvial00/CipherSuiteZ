@@ -89,13 +89,10 @@ def morph_cube(counter):
     key_value = ord(key_element)
     key_list.append(key_element)
     shift_value = (128 * key_value) % 256
-    for s in range(len(master_list)):
-        section = master_list.pop(0)
+    for section in master_list:
         for alphabet in section:
             shift = alphabet.pop(mod_value)
             alphabet.insert(shift_value,shift)
-        section.insert(mod_value,alphabet)
-        master_list.append(section)
     section_shift = master_list.pop(0)
     master_list.append(section_shift)
             
