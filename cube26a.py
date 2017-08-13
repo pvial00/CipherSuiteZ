@@ -29,19 +29,16 @@ def key_cube(key):
     for section in master_list:
         for char in key:
             char_value = alphabet_dict[char]
-            section_len = len(section)
-            for x in range(section_len):
-                alphabet = section.pop(x)
+            for alphabet in section:
                 pos = alphabet.index(char)
                 key_sub = alphabet.pop(pos)
                 alphabet.append(key_sub)
-                for y in range(0,char_value + x):
+                for y in range(0,char_value):
                     if y % 2 == 0:
                         shuffle = alphabet.pop(0)
                         alphabet.append(shuffle)
                         shuffle = alphabet.pop(2)
                         alphabet.insert(12,shuffle)
-                section.insert(x,alphabet)
             for x in range(char_value):
                 section = master_list.pop(char_value)
                 newpos = (char_value + (x * 128)) % 26
@@ -86,13 +83,10 @@ def morph_cube(counter):
     key_value = ord(key_element)
     key_list.append(key_element)
     shift_value = (mod_value + key_value) % 26
-    for s in range(len(master_list)):
-        section = master_list.pop(s)
+    for section in master_list:
         for alphabet in section:
             shift = alphabet.pop(mod_value)
             alphabet.insert(shift_value,shift)
-        section.insert(s,alphabet)
-        master_list.append(section)
     section_shift = master_list.pop(0)
     master_list.append(section_shift)
             
