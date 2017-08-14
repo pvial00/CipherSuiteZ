@@ -80,7 +80,6 @@ def gen_cube(length, width, depth):
 def morph_cube(counter):
     mod_value = counter % 26
     key_element = key_list.pop(0)
-    #key_value = ord(key_element)
     key_value = alphabet_dict[key_element]
     key_list.append(key_element)
     shift_value = (mod_value + key_value) % 26
