@@ -80,9 +80,7 @@ def gen_cube(length, width, depth):
 def morph_cube(counter, sub_key):
     mod_value = counter % 26
     for key_element in sub_key:
-    #key_element = key_list.pop(0)
         key_value = alphabet_dict[key_element]
-        #key_list.append(key_element)
         shift_value = (mod_value + key_value) % 26
         for section in master_list:
             for alphabet in section:
@@ -114,7 +112,7 @@ def decipher(words):
                 for alphabet in section:
                     sub_pos = alphabet.index(letter)
                     sub = alphabet_dict_rev[sub_pos]
-                    shift = alphabet.pop(0)
+                    shift = alphabet(0)
                     alphabet.append(shift)
             morph_cube(counter, sub_key)
             sub_key = key_scheduler(sub_key)
