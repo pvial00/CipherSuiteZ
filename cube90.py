@@ -89,7 +89,7 @@ def morph_cube(counter):
             for alphabet in section:
                 shift = alphabet.pop(mod_value)
                 alphabet.insert(shift_value,shift)
-        section_shift = master_list.pop(key_value)
+        section_shift = master_list.pop(key_value % end_char)
         master_list.append(section_shift)
             
 def encipher(words):
