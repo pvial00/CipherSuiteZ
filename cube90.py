@@ -82,16 +82,15 @@ def gen_cube(length, width, depth):
 
 def morph_cube(counter):
     mod_value = counter % end_char
-    key_element = key_list.pop(0)
-    key_value = ord(key_element)
-    key_list.append(key_element)
-    shift_value = (mod_value + key_value) % end_char
-    for section in master_list:
-        for alphabet in section:
-            shift = alphabet.pop(mod_value)
-            alphabet.insert(shift_value,shift)
-    section_shift = master_list.pop(0)
-    master_list.append(section_shift)
+    for key_element in key:
+        key_value = ord(key_element)
+        shift_value = (mod_value + key_value) % end_char
+        for section in master_list:
+            for alphabet in section:
+                shift = alphabet.pop(mod_value)
+                alphabet.insert(shift_value,shift)
+        section_shift = master_list.pop(key_value)
+        master_list.append(section_shift)
             
 def encipher(words):
     sub_key = key
