@@ -112,7 +112,7 @@ def decipher(words):
                 for alphabet in section:
                     sub_pos = alphabet.index(letter)
                     sub = alphabet_dict_rev[sub_pos]
-                    shift = alphabet(0)
+                    shift = alphabet.pop(0)
                     alphabet.append(shift)
             morph_cube(counter, sub_key)
             sub_key = key_scheduler(sub_key)
