@@ -8,13 +8,6 @@ except IndexError as ier:
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
-else:
-    infile = sys.argv[2]
-    outfile = sys.argv[3]
-    infile_fd = open(infile, "r")
-    words = infile_fd.read()
-    infile_fd.close()
-    outfile_fd = open(outfile, "w")
 
 try:
     key = sys.argv[4]
@@ -85,16 +78,15 @@ def gen_cube(depth, width, length):
 
 def morph_cube(counter):
     mod_value = counter % 256
-    key_element = key_list.pop(0)
-    key_value = ord(key_element)
-    key_list.append(key_element)
-    shift_value = (128 * key_value) % 256
-    for section in master_list:
-        for alphabet in section:
-            shift = alphabet.pop(mod_value)
-            alphabet.insert(shift_value,shift)
-    section_shift = master_list.pop(0)
-    master_list.append(section_shift)
+    for key_element in key:
+    	key_value = ord(key_element)
+    	shift_value = (128 * key_value) % 256
+    	for section in master_list:
+        	for alphabet in section:
+            		shift = alphabet.pop(mod_value)
+            		alphabet.insert(shift_value,shift)
+    	section_shift = master_list.pop(key_value % 16)
+    	master_list.append(section_shift)
             
 def encipher(words):
     cipher_text = ""
@@ -113,8 +105,7 @@ def encipher(words):
                     alphabet.append(shift)
             morph_cube(counter)
             sub_key = key_scheduler(sub_key)
-            cipher_text += chr(xor_sub)
-    return cipher_text
+            sys.stdout.write(chr(xor_sub))
 
 def load_key(key):
     global key_list
@@ -127,9 +118,6 @@ gen_alphadict()
 gen_cube(16, 16, 256)
 key_cube(key)
 if mode == "encrypt":
-    cipher_text = encipher(words)
-    outfile_fd.write(cipher_text)
+    encipher(words)
 elif mode == "decrypt":
-    plain_text = encipher(words)
-    outfile_fd.write(plain_text)
-outfile_fd.close()
+    encipher(words)
