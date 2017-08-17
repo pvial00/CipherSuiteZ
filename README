@@ -84,7 +84,7 @@ python cube26a.py encrypt/decrypt
 
 ### cube256.py - Key Automated Stream Cipher (Currently experimental Alpha phase)
 To run:
-python cube256.py encrypt/decrypt <input file> <output file> <key optional>
+python cube256.py encrypt/decrypt (reads input from stdin and prints to stdout. To encrypt a file cat the file to it and redirect stdout to a file.)
 --- Supports binary files
 
 ### cube90.py - An even more fierce 90x90x90 keyed alphabet substitution matrix (Presently unbroken)
