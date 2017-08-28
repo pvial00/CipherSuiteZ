@@ -2,6 +2,7 @@ import sys, collections, getpass, select
 
 start_char = 32
 end_char = 91
+size_factor = 26
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
@@ -34,7 +35,8 @@ def key_cube(key):
             char_value = alphabet_dict[char]
             for alphabet in section:
                 pos = alphabet.index(char)
-                key_sub = alphabet.pop(pos)
+                sized_pos = pos % size_factor
+                key_sub = alphabet.pop(sized_pos)
                 alphabet.append(key_sub)
                 for y in range(0,char_value):
                     if y % 2 == 0:
@@ -43,27 +45,28 @@ def key_cube(key):
                         shuffle = alphabet.pop(2)
                         alphabet.insert(45,shuffle)
             for x in range(char_value):
-                section = master_list.pop(char_value)
-                newpos = (char_value + (x * 128)) % end_char
+                section = master_list.pop(sized_pos)
+                newpos = (char_value + (x * 128)) % size_factor
                 master_list.insert(newpos,section)
 
 def key_scheduler(key):
     sub_key = ""
     for element in key:
         pos = alphabet_dict[element]
-        section = master_list.pop(pos)
-        sub_alpha = section.pop(pos)
+        sized_pos = pos % size_factor
+        section = master_list.pop(sized_pos)
+        sub_alpha = section.pop(sized_pos)
         shift = sub_alpha.pop(1)
         sub_alpha.append(shift)
-        section.insert(pos,sub_alpha)
-        master_list.insert(pos,section)
-        sub = sub_alpha.pop(pos)
-        sub_alpha.insert(pos,sub)
+        section.insert(sized_pos,sub_alpha)
+        master_list.insert(sized_pos,section)
+        sub = sub_alpha.pop(sized_pos)
+        sub_alpha.insert(sized_pos,sub)
         sub_key += sub
     load_key(sub_key)
     return sub_key
 
-def gen_cube(length, width, depth):
+def gen_cube(depth, width, length):
     global master_list
     master_list = []
     for z in range(0,depth):
@@ -81,15 +84,15 @@ def gen_cube(length, width, depth):
         master_list.append(section_list)
 
 def morph_cube(counter):
-    mod_value = counter % end_char
+    mod_value = counter % size_factor
     for key_element in key:
         key_value = ord(key_element)
-        shift_value = (mod_value + key_value) % end_char
+        shift_value = (mod_value + key_value) % size_factor
         for section in master_list:
             for alphabet in section:
                 shift = alphabet.pop(mod_value)
                 alphabet.insert(shift_value,shift)
-        section_shift = master_list.pop(key_value % end_char)
+        section_shift = master_list.pop(key_value % size_factor)
         master_list.append(section_shift)
             
 def encipher(words):
@@ -129,7 +132,7 @@ def load_key(key):
                 
 load_key(key)
 gen_alphadict()
-gen_cube(90, 90, 90)
+gen_cube(26, 26, 90)
 key_cube(key)
 if mode == "encrypt":
     cipher_text = encipher(words)
