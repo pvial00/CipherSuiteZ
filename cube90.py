@@ -1,8 +1,8 @@
 import sys, collections, getpass, select
 
 start_char = 32
-end_char = 91
-size_factor = 26
+end_char = 123
+size_factor = 16
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
@@ -132,7 +132,7 @@ def load_key(key):
                 
 load_key(key)
 gen_alphadict()
-gen_cube(26, 26, 90)
+gen_cube(16, 16, 90)
 key_cube(key)
 if mode == "encrypt":
     cipher_text = encipher(words)
