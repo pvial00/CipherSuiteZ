@@ -2,6 +2,9 @@ import sys, random, select
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
+    lastbyte = words[len(words) - 1:len(words)]
+        if lastbyte == chr(10):
+            words = words[:len(words) - 1]
 else:
     words = raw_input("Enter text to cipher: ")
 
