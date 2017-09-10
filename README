@@ -42,6 +42,11 @@ python beholder.py encrypt/decrypt/gen
 
 The idea is that you would randomly generate shiftbox and matrixbox settings and share them with the other party.  You would also exchange a key.  All 3 of these things combined create the key.
 
+### BitChao - Binary subsitution using the Chao cipher
+To run:
+python bitchao.py encrypt/decrypt/gen
+--- Supports binary data
+
 ### BitShuffle - Binary transposition cipher
 To run:
 python bitshuffle.py encrypt/decrypt
