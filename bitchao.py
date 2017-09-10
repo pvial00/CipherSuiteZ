@@ -32,7 +32,6 @@ def permute_alpha_sub(letter):
     alpha_sub.insert(128,step2)
 
 def permute_alpha_master(letter):
-    nadir = 13
     index = alpha_master.index(letter)
     step1 = alpha_master.pop(0)
     alpha_master.insert(index,step1)
