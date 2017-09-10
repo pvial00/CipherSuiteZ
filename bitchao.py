@@ -2,9 +2,6 @@ import sys, random, select
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
-    lastbyte = words[len(words) - 1:len(words)]
-    if lastbyte == chr(10):
-        words = words[:len(words) - 1]
 else:
     words = raw_input("Enter text to cipher: ")
 
@@ -28,25 +25,17 @@ def gen_alphabet():
     return alphabet, alphabet_rev
 
 def permute_alpha_sub(letter):
-    while True:
-        step1 = alpha_sub.pop(0)
-        if step1 == letter:
-            alpha_sub.insert(0,step1)
-            break
-        else:
-            alpha_sub.append(step1)
+    index = alpha_sub.index(letter)
+    step1 = alpha_sub.pop(0)
+    alpha_sub.insert(index,step1)
     step2 = alpha_sub.pop(1)
     alpha_sub.insert(128,step2)
 
 def permute_alpha_master(letter):
     nadir = 13
-    while True:
-        step1 = alpha_master.pop(0)
-        if step1 == letter:
-            alpha_master.insert(0,step1)
-            break
-        else:
-           alpha_master.append(step1)
+    index = alpha_master.index(letter)
+    step1 = alpha_master.pop(0)
+    alpha_master.insert(index,step1)
     step2 = alpha_master.pop(0)
     alpha_master.append(step2)
     step3 = alpha_master.pop(2)
