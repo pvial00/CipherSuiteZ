@@ -45,6 +45,7 @@ The idea is that you would randomly generate shiftbox and matrixbox settings and
 ### BitChao - Binary subsitution using the Chao cipher
 To run:
 python bitchao.py encrypt/decrypt/gen
+Example:  cat filename | python bitchao.py encrypt > output_filename
 --- Supports binary data
 
 ### BitShuffle - Binary transposition cipher
