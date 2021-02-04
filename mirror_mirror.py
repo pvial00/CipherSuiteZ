@@ -33,9 +33,9 @@ def extract_text():
         for x in range(tag_pos+tag_size,data_size):
             encrypted_message += data[x]
         plaintext_message = krypt(encrypted_message, key)
-        print plaintext_message
+        print(plaintext_message)
     else:
-        print "Unable to find secrect message."
+        print("Unable to find secrect message.")
     
 
 def krypt(text, key):
@@ -47,7 +47,7 @@ def krypt(text, key):
     return cipher_text
 
 if mode == "encrypt":
-    text = raw_input("Enter text to hide: ")
+    text = input("Enter text to hide: ")
     key = getpass.getpass("Enter key: ")
     cipher_text = krypt(text, key)
     inject_text(cipher_text)

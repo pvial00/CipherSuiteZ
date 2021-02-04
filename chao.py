@@ -3,7 +3,7 @@ import sys, random
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 alpha_sub = ['H', 'X', 'U', 'C', 'Z', 'V', 'A', 'M', 'D', 'S', 'L', 'K', 'P', 'E', 'F', 'J', 'R', 'I', 'G', 'T', 'W', 'O', 'B', 'N', 'Y', 'Q']
 alpha_master = ['P', 'T', 'L', 'N', 'B', 'Q', 'D', 'E', 'O', 'Y', 'S', 'F', 'A', 'V', 'Z', 'K', 'G', 'J', 'R', 'I', 'H', 'W', 'X', 'U', 'M', 'C']
@@ -69,13 +69,13 @@ def chao_decrypt(words):
 
 if mode == "gen":
     alphabet, alphabet_rev = gen_alphabet()
-    print alphabet
-    print alphabet_rev
+    print(alphabet)
+    print(alphabet_rev)
 elif mode == "encrypt":
-    words = raw_input("Enter text to cipher: ")
+    words = input("Enter text to cipher: ")
     cipher_text = chao_encrypt(words)
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
-    words = raw_input("Enter text to cipher: ")
+    words = input("Enter text to cipher: ")
     plain_text = chao_decrypt(words)
-    print plain_text
+    print(plain_text)

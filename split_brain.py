@@ -3,12 +3,12 @@ import sys, getpass
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 def split_data(data):
     data_len = len(data)
-    split_point = len(data) / 2
+    split_point = int(len(data) / 2)
     left = []
     right = []
     for x in range(0,split_point):
@@ -71,16 +71,16 @@ def key_list(key):
 
 key = "a"
 keys = key_list(key)
-data = raw_input("Enter text to cipher: ")
+data = input("Enter text to cipher: ")
 if mode == "encrypt":
     left, right = split_data(data)
     cipher_left = encrypt_left(left)
     cipher_right = encrypt_right(right)
     cipher_text = cipher_left + cipher_right
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     left, right = split_data(data)
     plain_left = decrypt_left(left)
     plain_right = decrypt_right(right)
     plain_text = plain_left + plain_right
-    print plain_text
+    print(plain_text)

@@ -4,25 +4,25 @@ from getpass import getpass
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 try:
     in_file = sys.argv[2]
 except IndexError as ier:
-    print "Error: input file is missing"
+    print("Error: input file is missing")
     sys.exit(1)
 
 try:
     out_file = sys.argv[3]
 except IndexError as ier:
-    print "Error: output file is missing"
+    print("Error: output file is missing")
     sys.exit(1)
 
 def gen_session_key(session_key_length):
 	session_key = ""
 	for key in range(0,session_key_length):
-		session_key = session_key + os.urandom(1)
+		session_key = session_key + "".join(map(chr, os.urandom(1)))
 	return session_key
 
 def krypt(text, key):
@@ -58,13 +58,13 @@ def krypto_unpack(cipher_text, key):
 try:
 	infile = open(in_file, "r")
 except NameError as ner:
-	print "Unable to open infile"
+	print("Unable to open infile")
 	sys.exit(0)
 
 try:
 	outfile = open(out_file, "w")
 except NameError as ner:
-	print "Unable to open outfile"
+	print("Unable to open outfile")
 	sys.exit(0)
 
 try:
@@ -84,6 +84,6 @@ elif mode == "decrypt":
 	outfile.write(plain_text)
 
 end_time = time.time() - start_time
-print "Completed in %s seconds" % end_time
+print("Completed in %s seconds" % end_time)
 infile.close()
 outfile.close()

@@ -6,26 +6,26 @@ rounds = 16
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 try:
     in_file = sys.argv[2]
 except IndexError as ier:
-    print "Error: input file is missing"
+    print("Error: input file is missing")
     sys.exit(1)
 
 try:
     out_file = sys.argv[3]
 except IndexError as ier:
-    print "Error: output file is missing"
+    print("Error: output file is missing")
     sys.exit(1)
 
 def gen_session_key(session_key_length):
-	session_key = ""
-	for key in range(0,session_key_length):
-		session_key = session_key + os.urandom(1)
-	return session_key
+    session_key = ""
+    for key in range(0,session_key_length):
+        session_key = session_key + "".join(map(chr, os.urandom(1)))
+    return session_key
 
 def key_scheduler(key):
     sub_key = ""
@@ -37,7 +37,7 @@ def key_scheduler(key):
 def split_data(data):
     left = []
     right = []
-    split = len(data) / 2
+    split = int(len(data) / 2)
     for x in range(split):
         left.append(data[x])
     for x in range(len(data)):
@@ -53,53 +53,53 @@ def krypt_block(block, key):
     for byte in right:
         newleft += byte
     for byte in left:
-	primary_round = ord(byte)
-	for y in range(0,len(key)):
-		primary_round = primary_round ^ ord(key[y])
-		crypt_text = crypt_text + chr(primary_round)
-	return newleft + newright
+        primary_round = ord(byte)
+        for y in range(0,len(key)):
+            primary_round = primary_round ^ ord(key[y])
+            crypt_text = crypt_text + chr(primary_round)
+        return newleft + newright
 
 def krypt(text, key):
-	crypt_text = ""
-	for x in range(0,len(text)):
-		byte = text[x]
-		primary_round = ord(byte)
-		for y in range(0,len(key)):
-			primary_round = primary_round ^ ord(key[y])
-		crypt_text = crypt_text + chr(primary_round)
-	return crypt_text
+    crypt_text = ""
+    for x in range(0,len(text)):
+        byte = text[x]
+        primary_round = ord(byte)
+        for y in range(0,len(key)):
+            primary_round = primary_round ^ ord(key[y])
+            crypt_text = crypt_text + chr(primary_round)
+    return crypt_text
 
 def dual_krypt(text, key1, key2):
-	crypt_text = ""
-	for x in range(0,len(text)):
-		byte = text[x]
-		primary_round = ord(byte)
-		for y in range(0,len(key1)):
-			primary_round = primary_round ^ ord(key1[y])
-                for z in range(0,len(key2)):
-                    primary_round = primary_round ^ ord(key2[z])
-		crypt_text = crypt_text + chr(primary_round)
-	return crypt_text
+    crypt_text = ""
+    for x in range(0,len(text)):
+        byte = text[x]
+        primary_round = ord(byte)
+        for y in range(0,len(key1)):
+            primary_round = primary_round ^ ord(key1[y])
+            for z in range(0,len(key2)):
+                primary_round = primary_round ^ ord(key2[z])
+                crypt_text = crypt_text + chr(primary_round)
+    return crypt_text
 
 def krypto_pack(plain_text, key):
-	session_key = gen_session_key(session_key_length)
-	krypt_pkt = krypt(plain_text, session_key)
-	krypt_pkt = session_key + krypt_pkt
-	krypt_pkt = krypt(krypt_pkt, key)
-	return krypt_pkt
+    session_key = gen_session_key(session_key_length)
+    krypt_pkt = krypt(plain_text, session_key)
+    krypt_pkt = session_key + krypt_pkt
+    krypt_pkt = krypt(krypt_pkt, key)
+    return krypt_pkt
 
 def krypto_unpack(cipher_text, key):
-	plain_text = ""
-	session_key = ""
-	second_stage = ""
-	first_stage = krypt(cipher_text, key)
-	first_stage_len = len(cipher_text)
-	for x in range(0,session_key_length):
-		session_key = session_key + first_stage[x]
-	for x in range(session_key_length,first_stage_len):
-		second_stage = second_stage + first_stage[x]
-	plain_text = krypt(second_stage, session_key)
-	return plain_text
+    plain_text = ""
+    session_key = ""
+    second_stage = ""
+    first_stage = krypt(cipher_text, key)
+    first_stage_len = len(cipher_text)
+    for x in range(0,session_key_length):
+        session_key = session_key + first_stage[x]
+        for x in range(session_key_length,first_stage_len):
+            second_stage = second_stage + first_stage[x]
+    plain_text = krypt(second_stage, session_key)
+    return plain_text
 
 def block_data(data):
     blocks = []
@@ -157,13 +157,13 @@ def unpad_block(block, blocksize):
 try:
 	infile = open(in_file, "r")
 except NameError as ner:
-	print "Unable to open infile"
+	print("Unable to open infile")
 	sys.exit(0)
 
 try:
 	outfile = open(out_file, "w")
 except NameError as ner:
-	print "Unable to open outfile"
+	print("Unable to open outfile")
 	sys.exit(0)
 
 try:
@@ -184,16 +184,16 @@ session_key_length =  16 # 16 for 128 bit, 32 for 256 bit, 128 for 1024 bit, 256
 
 start_time = time.time()
 if mode == "encrypt":
-        blocks = block_data(data)
-        phase1 = encrypt(blocks, rounds, key)
-	phase2 = krypto_pack(phase1, key)
-	outfile.write(phase2)
+   blocks = block_data(data)
+   phase1 = encrypt(blocks, rounds, key)
+   phase2 = krypto_pack(phase1, key)
+   outfile.write(phase2)
 elif mode == "decrypt":
-	phase1 = krypto_unpack(data, key)
-        blocks = block_data(phase1)
-        phase2 = decrypt(blocks, rounds, key)
-	outfile.write(phase2)
+   phase1 = krypto_unpack(data, key)
+   blocks = block_data(phase1)
+   phase2 = decrypt(blocks, rounds, key)
+   outfile.write(phase2)
 
 end_time = time.time() - start_time
-print "Completed in %s seconds" % end_time
+print("Completed in %s seconds" % end_time)
 outfile.close()

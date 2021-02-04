@@ -3,7 +3,7 @@ import sys, getpass
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 def kick_number(char):
@@ -16,19 +16,19 @@ def shrink_number(num, key):
     return shrink
 
 if mode == "encrypt":
-    words = raw_input("Input data: ")
+    words = input("Input data: ")
     key_string = ""
     for ctr, letter in enumerate(words):
         value = kick_number(letter)
         value = value + ctr
         key = value / ord(letter)
         key_string += str(key) + " "
-        print value,
-    print ""
-    print "Key: ", key
+        print(value,)
+    print("")
+    print("Key: ", key)
 elif mode == "decrypt":
     keys = []
-    words = raw_input("Input data: ")
+    words = input("Input data: ")
     words = words.rstrip('\n')
     key = getpass.getpass("Input key: ")
     for ctr, word in enumerate(words.split()):

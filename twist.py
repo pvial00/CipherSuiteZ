@@ -76,14 +76,14 @@ def untwist_words(blocks):
         plain_text += untwisted_block
     return plain_text
         
-words = raw_input("Enter words: ")
+words = input("Enter words: ")
 if mode == "twist":
     blocked_data = block_data(words)
     twisted_shit = twist_words(blocked_data)
     twisted_shit = rev_words(twisted_shit)
-    print twisted_shit
+    print(twisted_shit)
 elif mode =="untwist":
     words = rev_words(words)
     blocked_data = block_data(words)
     untwisted_shit = untwist_words(blocked_data)
-    print untwisted_shit
+    print(untwisted_shit)

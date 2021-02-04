@@ -3,7 +3,7 @@ import sys, collections, getpass, select
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 if select.select([sys.stdin,],[],[],0.0)[0]:

@@ -3,13 +3,13 @@ import sys
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 try:
     book = sys.argv[2]
 except (IndexError,IOError) as ier:
-    print "Error: missing input file."
+    print("Error: missing input file.")
     sys.exit(1)
 
 def split_words(text):
@@ -22,9 +22,9 @@ def create_dictionary(book):
     try:
         book_fd = open(book, "r")
     except IOError as ier:
-        print "Error: Unable to open book file"
+        print("Error: Unable to open book file")
         sys.exit(1)
-    text = book_fd.read()
+    book_fd.read()
     book_fd.close()
     dictionary = {}
     dictionary_rev = {}
@@ -55,13 +55,13 @@ def decipher_numbers(numbers, dictionary_rev):
             plain_text += sub
     return plain_text
 
-words = raw_input("Enter text to cipher: ")
+words = input("Enter text to cipher: ")
 dictionary = create_dictionary(book)
 dictionary_rev = list(dictionary)
 
 if mode == "encrypt":
     cipher_text = encipher_text(words, dictionary)
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     plain_text = decipher_numbers(words, dictionary_rev)
-    print plain_text
+    print(plain_text)

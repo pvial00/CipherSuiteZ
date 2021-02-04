@@ -48,7 +48,7 @@ def garbage_out(dirty_text):
             clean_text += char
     return clean_text
 alphabet, alphabet_rev = gen_alphabet()
-data = raw_input("Input text to cipher:")
+data = input("Input text to cipher:")
 
 if mode == "encrypt":
     cipher_text = ""
@@ -56,11 +56,11 @@ if mode == "encrypt":
         letter = encrypt(x)
         cipher_text += letter
     garbage = garbage_in(cipher_text)
-    print garbage
+    print(garbage)
 elif mode == "decrypt":
     plain_text = ""
     clean_text = garbage_out(data)
     for x in clean_text:
         letter = decrypt(x)
         plain_text += letter
-    print plain_text
+    print(plain_text)

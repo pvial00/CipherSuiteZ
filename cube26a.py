@@ -3,12 +3,12 @@ import sys, collections, getpass, select
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
 else:
-    words = raw_input("Enter text to cipher: ")
+    words = input("Enter text to cipher: ")
 
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 try:

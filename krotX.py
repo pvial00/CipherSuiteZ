@@ -3,7 +3,7 @@ import sys
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget to encrypt/decrypt?"
+    print("Error: Did you forget to encrypt/decrypt?")
     sys.exit(1)
 
 shift_factor = 13
@@ -40,17 +40,17 @@ def decrypt(cipher_text):
     return letter
 
 alphabet, alphabet_rev = gen_alphabet()
-data = raw_input("Input text to cipher:")
+data = input("Input text to cipher:")
 
 if mode == "encrypt":
     cipher_text = ""
     for x in data:
         letter = encrypt(x)
         cipher_text += letter
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     plain_text = ""
     for x in data:
         letter = decrypt(x)
         plain_text += letter
-    print plain_text
+    print(plain_text)

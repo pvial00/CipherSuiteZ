@@ -9,29 +9,29 @@ def translate_to_arabic(data):
     arabic = ""
     for letter in data:
         avalue = ord(letter) + shift_index
-        arabic += unichr(avalue)
+        arabic += chr(avalue)
     return arabic
 
 def translate_to_english(data):
     english = ""
     for letter in data.decode('utf-8'):
         avalue = ord(letter) - shift_index
-        english += unichr(avalue)
+        english += chr(avalue)
     return english
 
 def display_plaintext(data):
     english = ""
     for letter in data:
         avalue = ord(letter) - shift_index
-        english += unichr(avalue)
+        english += chr(avalue)
     return english
 
-data = raw_input("Enter text to encipher:")
+data = input("Enter text to encipher:")
 if mode == "encrypt":
     arabic = translate_to_arabic(data)
-    print arabic
+    print(arabic)
     english = display_plaintext(arabic)
-    print english
+    print(english)
 elif mode == "decrypt":
     english = translate_to_english(data)
-    print english
+    print(english)

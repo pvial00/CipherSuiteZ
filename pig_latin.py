@@ -28,7 +28,7 @@ def pig_pen(words):
         latin += latin_word + "ay" + " "
     return latin
 
-words = raw_input("Enter some english: ")
+words = input("Enter some english: ")
 
 latin = pig_pen(words)
-print latin
+print(latin)

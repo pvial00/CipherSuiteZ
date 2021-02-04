@@ -3,7 +3,7 @@ import sys
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 def bit_shuffle(words):
@@ -64,11 +64,11 @@ def bit_unshuffle(bits):
         plain_text += chr(int(cipher_block, 2))
     return plain_text
 
-words = raw_input("Enter text to cipher: ")
+words = input("Enter text to cipher: ")
 
 if mode == "encrypt":
     cipher_text = bit_shuffle(words)
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     plain_text = bit_unshuffle(words)
-    print plain_text
+    print(plain_text)

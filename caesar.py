@@ -3,7 +3,7 @@ import sys, collections
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you foget encrypt/decrypt?"
+    print("Error: Did you foget encrypt/decrypt?")
     sys.exit(1)
 
 def encipher(data):
@@ -51,11 +51,11 @@ def decipher(data):
 		newdata = newdata + sub
 	return newdata
 
-data = raw_input("Enter text to cipher: ")
+data = input("Enter text to cipher: ")
 
 if mode == "encrypt":
 	cryptdata = encipher(data)
-	print cryptdata
+	print(cryptdata)
 elif mode == "decrypt":
 	clear = decipher(data)
-	print clear
+	print(clear)

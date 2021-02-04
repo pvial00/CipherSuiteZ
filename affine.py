@@ -3,7 +3,7 @@ import sys
 try:
     mode = sys.argv[1]
 except IndexError as ier:
-    print "Error: Did you forget encrypt/decrypt?"
+    print("Error: Did you forget encrypt/decrypt?")
     sys.exit(1)
 
 def gen_alphabet():
@@ -34,11 +34,11 @@ def affine_decrypt(words):
             plain_text += sub
     return plain_text
 
-words = raw_input("Enter text to cipher: ")
+words = input("Enter text to cipher: ")
 alphabet, alphabet_rev = gen_alphabet()
 if mode == "encrypt":
     cipher_text = affine_encrypt(words)
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     plain_text = affine_decrypt(words)
-    print plain_text
+    print(plain_text)

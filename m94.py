@@ -32,20 +32,20 @@ def program_wheels(num_wheels):
 	return
 
 def rotate_wheel(wheel_num, char):
-	global wheels
-	temp_que = wheels.pop(wheel_num)
-	found = 0
-	while found != 1:
- 		letter = temp_que.popleft()
-		if letter != char:
-			temp_que.appendleft(letter)
-			temp_que.rotate(-1)
-		elif letter == char:
-			temp_que.appendleft(letter)
-			wheels.append(temp_que)
-			found = 1
-			break
-	return
+    global wheels
+    temp_que = wheels.pop(wheel_num)
+    found = 0
+    while found != 1:
+        letter = temp_que.popleft()
+        if letter != char:
+           temp_que.appendleft(letter)
+           temp_que.rotate(-1)
+        elif letter == char:
+           temp_que.appendleft(letter)
+           wheels.append(temp_que)
+           found = 1
+           break
+    return
 
 def set_wheel_order(order):
     for x, p in enumerate(order.split()):
@@ -54,33 +54,33 @@ def set_wheel_order(order):
         wheels.insert(x, wheel)
 	
 def m94_cipher(data):
-	global wheels
-	wheel = []
-	for x in reversed(range(0,len(data))):
-		rotate_wheel(x, data[x])
-	wheels.reverse()
-	print "*************** POSSIBLE CIPHER TEXTS: ********************"
-	for z in reversed(range(0,26)):
-		for x in range(0,len(wheels)):
-			wheel = wheels.pop(x)
-			wheel.reverse()
-			letter = wheel.pop()
-			wheels.insert(x, wheel)
-			sys.stdout.write(letter)
-		sys.stdout.write("\n")
+        global wheels
+        wheel = []
+        for x in reversed(range(0,len(data))):
+            rotate_wheel(x, data[x])
+        wheels.reverse()
+        print("*************** POSSIBLE CIPHER TEXTS: ********************")
+        for z in reversed(range(0,26)):
+            for x in range(0,len(wheels)):
+                wheel = wheels.pop(x)
+                wheel.reverse()
+                letter = wheel.pop()
+                wheels.insert(x, wheel)
+                sys.stdout.write(letter)
+            sys.stdout.write("\n")
 
 num_wheels = 25
 program_wheels(num_wheels)
-print "M94 Cipher Machine"
+print("M94 Cipher Machine")
 try:
-    wheel_order = raw_input("Enter disk order: ")
+    wheel_order = input("Enter disk order: ")
 except ValueError as ver:
     pass
 else:
     set_wheel_order(wheel_order)
-print "Enter a message up to 25 characters"
-data = raw_input("Enter cipher text: ")
+print("Enter a message up to 25 characters")
+data = input("Enter cipher text: ")
 if len(data) > 25:
-	print "Your message must be 25 characters or less.  Try again."
-	sys.exit(0)
+    print("Your message must be 25 characters or less.  Try again.")
+    sys.exit(0)
 m94_cipher(data)

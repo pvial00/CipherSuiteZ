@@ -43,14 +43,14 @@ def decrypt(text):
         plain_text += sub
     return plain_text
 
-text = raw_input("Enter text to cipher: ")
+text = input("Enter text to cipher: ")
 key = getpass.getpass("Enter key: ")
 gen_alphabet()
 key_alphabet()
 
 if mode == "encrypt":
     cipher_text = encrypt(text)
-    print cipher_text
+    print(cipher_text)
 elif mode == "decrypt":
     plain_text = decrypt(text)
-    print plain_text
+    print(plain_text)
